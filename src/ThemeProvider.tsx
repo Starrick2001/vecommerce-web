@@ -1,4 +1,8 @@
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from "@mantine/core";
+import {
+	ColorScheme,
+	ColorSchemeProvider,
+	MantineProvider
+} from "@mantine/core";
 import { useState } from "react";
 
 interface ThemeProviderProps {
@@ -15,7 +19,27 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 			colorScheme={colorScheme}
 			toggleColorScheme={toggleColorScheme}
 		>
-			<MantineProvider withGlobalStyles withNormalizeCSS theme={{colorScheme, primaryColor: 'dark'}}>
+			<MantineProvider
+				withGlobalStyles
+				withNormalizeCSS
+				theme={{
+					colorScheme,
+					primaryColor: "dark",
+					components: {
+						Container: {
+							defaultProps: {
+								sizes: {
+									xs: 540,
+									sm: 720,
+									md: 960,
+									lg: 1140,
+									xl: 1320
+								}
+							}
+						}
+					}
+				}}
+			>
 				{children}
 			</MantineProvider>
 		</ColorSchemeProvider>

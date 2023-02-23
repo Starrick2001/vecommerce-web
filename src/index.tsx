@@ -7,6 +7,9 @@ import { NotFoundPage } from "./routes/NotFoundPage/NotFoundPage";
 import { Navbar } from "./components/Navbar/Navbar";
 import { ThemeProvider } from "./ThemeProvider";
 import { AuthPage } from "./routes/AuthPage/AuthPage";
+import { Home } from "./routes/Home/Home";
+import { Footer } from "./components/Footer/Footer";
+import { Product } from "./routes/Product/Product";
 
 const router = createBrowserRouter([
 	{
@@ -14,6 +17,7 @@ const router = createBrowserRouter([
 		element: (
 			<ThemeProvider>
 				<Navbar />
+				<Footer />
 			</ThemeProvider>
 		),
 		errorElement: (
@@ -23,12 +27,20 @@ const router = createBrowserRouter([
 		),
 		children: [
 			{
-				path: "/landing",
+				path: "/",
 				element: <LandingPage />
 			},
 			{
 				path: "/auth",
 				element: <AuthPage />
+			},
+			{
+				path: "/home",
+				element: <Home />
+			},
+			{
+				path: "/product/:productId",
+				element: <Product />
 			}
 		]
 	}

@@ -7,11 +7,12 @@ import {
 	Box,
 	Burger,
 	Drawer,
-	ScrollArea
+	ScrollArea,
+	Paper,
 } from "@mantine/core";
 import { MantineLogo } from "@mantine/ds";
 import { useDisclosure } from "@mantine/hooks";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { ButtonToggle } from "../ButtonToggle/ButtonToggle";
 
 const useStyles = createStyles((theme) => ({
@@ -87,38 +88,41 @@ export function Navbar() {
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
 		useDisclosure(false);
 	const { classes, theme } = useStyles();
-	const navigate = useNavigate();
-
-	const redirectHomeHandler = () => {
-		return navigate("/");
-	};
 
 	return (
 		<>
 			<Box>
 				<Header height={60} px="md">
 					<Group position="apart" sx={{ height: "100%" }}>
-						<MantineLogo size={30} onClick={redirectHomeHandler} />
+						<Paper component={Link} to="/">
+							<MantineLogo size={30} />
+						</Paper>
 						<Group sx={{ height: "100%", alignContent: "center" }}></Group>
 						<Group className={classes.hiddenMobile}>
 							<ButtonToggle />
-							{/* <Group sx={{height: '100%'}}>
+							{/* <Group sx={{ height: "100%" }}>
 								<UserButton email="" image="" name=""/>
+								<HoverCard width={200}>
+									<HoverCard.Target>
+										<ActionIcon>
+											<IconShoppingCart />
+										</ActionIcon>
+									</HoverCard.Target>
+									<HoverCard.Dropdown>
+										<Box sx={(theme) => ({
+											textAlign: 'center',
+											padding: theme.spacing.xl
+										})}>
+											No item
+										</Box>
+									</HoverCard.Dropdown>
+								</HoverCard>
 							</Group> */}
 							<Group>
-								<Button
-									variant="default"
-									onClick={() => {
-										navigate("/auth");
-									}}
-								>
+								<Button component={Link} to="/auth" variant="default">
 									Log in
 								</Button>
-								<Button
-									onClick={() => {
-										navigate("/auth?type=register");
-									}}
-								>
+								<Button component={Link} to="/auth?type=register">
 									Sign up
 								</Button>
 							</Group>
@@ -148,21 +152,10 @@ export function Navbar() {
 						/>
 
 						<Group position="center" grow pb="xl" px="md">
-							<Button
-								variant="default"
-								onClick={() => {
-									toggleDrawer();
-									navigate("/auth");
-								}}
-							>
+							<Button component={Link} to="/auth" variant="default">
 								Log in
 							</Button>
-							<Button
-								onClick={() => {
-									toggleDrawer();
-									navigate("/auth?type=register");
-								}}
-							>
+							<Button component={Link} to="/auth?type=register">
 								Sign up
 							</Button>
 						</Group>
