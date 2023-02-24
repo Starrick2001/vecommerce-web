@@ -24,7 +24,7 @@ export function ProductFilter() {
 	const [rateFilter, setRateFilter] = useState<number>(0);
 
 	return (
-		<Accordion defaultValue={["category", "price"]} multiple={true}>
+		<Accordion defaultValue={["category", "price","rate"]} multiple={true}>
 			<Accordion.Item value="category">
 				<Accordion.Control>
 					<Text fw={700}>Categories</Text>

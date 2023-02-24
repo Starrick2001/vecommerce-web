@@ -8,7 +8,8 @@ import {
 	Title,
 	Divider,
 	Group,
-	Button
+	Button,
+	Paper
 } from "@mantine/core";
 import { IconShoppingCartPlus } from "@tabler/icons";
 import { Breadcrumb } from "../../components/Breadcrumb/Breadcrumb";
@@ -25,6 +26,10 @@ const breadcrumbData = [
 	{
 		link: "/",
 		label: "category"
+	},
+	{
+		link: '/product/123',
+		label: 'product123'
 	}
 ];
 
@@ -38,7 +43,7 @@ const images = [
 
 const slides = images.map((image) => (
 	<Carousel.Slide key={image}>
-		<Image src={image} height={220} />
+		<Image src={image} height={220} radius='md' fit="contain"/>
 	</Carousel.Slide>
 ));
 
@@ -81,8 +86,10 @@ export function Product() {
 						>
 							description
 						</Text>
-						<Group>
-							<QuantityInput />
+						<Group position="right">
+							<Paper>
+								<QuantityInput />
+							</Paper>
 							<Button rightIcon={<IconShoppingCartPlus />}>Add to cart</Button>
 						</Group>
 					</Grid.Col>

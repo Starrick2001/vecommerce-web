@@ -1,10 +1,21 @@
-import { Container, Grid, Paper, SimpleGrid, Stack, Flex } from "@mantine/core";
+import {
+	Container,
+	Grid,
+	Paper,
+	SimpleGrid,
+	Stack,
+	Flex,
+	Pagination,
+	Center
+} from "@mantine/core";
+import { useState } from "react";
 import { DealCarousel } from "../../components/DealCarousel/DealCarousel";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { ProductFilter } from "../../components/ProductFilter/ProductFilter";
 import { ProductSort } from "../../components/ProductSort/ProductSort";
 
 export function Home() {
+	const [page, setPage] = useState(1);
 	return (
 		<Container my="md" size="xl">
 			<DealCarousel height={440} />
@@ -28,6 +39,9 @@ export function Home() {
 								<ProductCard />
 								<ProductCard />
 							</SimpleGrid>
+							<Center>
+								<Pagination total={20} page={page} onChange={setPage} siblings={2} />
+							</Center>
 						</Stack>
 					</Grid.Col>
 				</Grid>
